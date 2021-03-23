@@ -22,6 +22,7 @@ set -euo pipefail
 
 if [ "${stage}" -le 0 ] && [ "${stop_stage}" -ge 0 ]; then
     echo "Stage 0: Make speaker list & perform train/dev/eval split"
+    mkdir -p ${datadir}
     . local/make_speaker_list.sh > ${datadir}/speakers.txt
     python -uB local/make_subset.py \
         --db-root ${db_root} \

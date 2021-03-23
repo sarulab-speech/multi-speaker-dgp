@@ -1,8 +1,10 @@
 # Multi-speaker DGP
 This repository provides official implementation of deep Gaussian process (DGP)-based multi-speaker speech synthesis with PyTorch.
 
+Our paper: Deep Gaussian Process Based Multi-speaker Speech Synthesis with Latent Speaker Representation
+
 # Setup
-You can complete setup with simply executing `setup.sh`.
+You can complete setup by simply executing `setup.sh`.
 ```
 $ . ./setup.sh
 ```
