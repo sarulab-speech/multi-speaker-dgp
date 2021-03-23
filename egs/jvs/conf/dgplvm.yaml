@@ -1,0 +1,63 @@
+# Data preparation
+dev_size: 3  # the number of utterances per speaker used for validation
+eval_utt_nums: ['074', '075', '080', '081', '083',
+                '084', '085', '087', '088', '089',
+                '093', '095', '096', '097', '099']
+
+# Feature extraction
+sampling_rate: 16000  # wavs are first downsampled to this rate and then processed
+fft_size: 1024        # FFT size
+hop_size_in_ms: 5     # frame shift in milliseconds
+mcep_order: 59        # order of mel-cepstrum
+n_delta: 2            # 0: static, 1: static + delta, 2: static + delta + delta-delta
+n_processes: 4        # the number of processes for multiprocessing
+
+# Phoneme duration model
+duration_config:
+    model_class: 'DGPLVM' # 'DGP' and 'DGPLVM' are supported
+    model_params:         # these params will be passed to model initializer
+        input_dim: 531
+        hidden_dim: 32
+        output_dim: 1
+        speaker_code_dim: 100
+        speaker_latent_dim: 32
+        num_hidden_layers: 2
+        feed_layer_indices: [1, 2]
+        hidden_gp_inducing_size: 1024
+        initial_latent_variance: 1.0e-4
+        mode: 'concat'
+    optimizer_params:
+        lr: 0.01
+    buffer_size: 64       # the number of utterances loaded by dataloader at once
+    batch_size: 1024      # the number of frames making up a mini-batch
+    num_workers: 4
+    pin_memory: True
+    epochs: 50
+    log_interval_steps: 100
+    save_interval_epochs: 1
+    random_state: 321
+
+# Acoustic model
+acoustic_config:
+    model_class: 'DGPLVM' # 'DGP' and 'DGPLVM' are supported
+    model_params:         # these params will be passed to model initializer
+        input_dim: 535
+        hidden_dim: 128
+        output_dim: 187
+        speaker_code_dim: 100
+        speaker_latent_dim: 64
+        num_hidden_layers: 5
+        feed_layer_indices: [1, 2, 3, 4, 5]
+        hidden_gp_inducing_size: 1024
+        initial_latent_variance: 1.0e-4
+        mode: 'concat'
+    optimizer_params:
+        lr: 0.01
+    buffer_size: 64       # the number of utterances loaded by dataloader at once
+    batch_size: 1024      # the number of frames making up a mini-batch
+    num_workers: 4
+    pin_memory: True
+    epochs: 50
+    log_interval_steps: 100
+    save_interval_epochs: 1
+    random_state: 321

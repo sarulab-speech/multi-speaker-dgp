@@ -1,0 +1,7 @@
+__pycache__
+venv
+egs/*/data
+egs/*/dump
+egs/*/exp
+egs/jvs/jvs_ver1
+

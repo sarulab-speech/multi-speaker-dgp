@@ -1,0 +1,1 @@
+ls -d jvs_ver1/*/ | sed s/jvs_ver1//g | sed s/'\/'//g

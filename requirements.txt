@@ -1,0 +1,8 @@
+nnmnkwii
+numpy
+pysptk
+pyworld
+pyyaml
+tensorboardX
+torch
+scipy
